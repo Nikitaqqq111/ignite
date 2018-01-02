@@ -7,6 +7,8 @@ import org.apache.ignite.testframework.configvariations.ConfigVariationsTestSuit
 import org.junit.Before;
 import org.junit.Test;
 
+import static org.junit.Assert.assertTrue;
+
 public class StreamingExampleTest {
 
     private TestSuite suite;
@@ -17,8 +19,7 @@ public class StreamingExampleTest {
                 "StreamingExample Test Suite",
                 StreamingExample.class)
                 .gridsCount(3)
-                .testedNodesCount(3)
-                .withClients()
+                .testedNodesCount(2).withClients()
                 .build();
     }
 
@@ -26,6 +27,7 @@ public class StreamingExampleTest {
     public void streamingExampleTest() throws Exception {
         TestResult result = new TestResult();
         suite.run(result);
+        assertTrue(result.errorCount() == 0);
     }
 
 }
